@@ -30,3 +30,7 @@ https://dailypik.com/best-us-stocks/
 refering the above site, we created a local excel sheet which we later converted into DataFrame and used in the program.
 #### local excel sheet link:
 https://github.com/pratham180702/python_live_Stock_analysis/blob/main/stock_list.xlsx
+
+## contributed by 
+PRATHAM KAKKAD,
+JAYDEEP SHARMA
