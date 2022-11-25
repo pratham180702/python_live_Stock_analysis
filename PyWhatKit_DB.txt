@@ -23,3 +23,8 @@ Time: 15:31
 Phone Number: +9429283446
 Message: BAC Alert: last minute closing of your stock has crossed your stop loss closing limit by the change percent of : -0.0015641%
 --------------------
+Date: 26/11/2022
+Time: 2:10
+Phone Number: +917433055288
+Message: AAPL Alert: last minute closing of your stock has crossed your stop loss closing limit by the change percent of : -0.0004711%
+--------------------
