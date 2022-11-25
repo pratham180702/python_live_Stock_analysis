@@ -17,7 +17,6 @@ print(csv_file)
 #enter the stock name you want to search
 stock = input("Enter the Stock symbol(any US listed stock) :")
 
-
 choice1 = input("What you want to analyze : \n1. Daily pivot point.\n2. Intraday candle closing percent analysis. : ")
 
 if(choice1 == '1'):
@@ -138,7 +137,6 @@ if(choice1 == '1'):
         plt.legend(loc="upper right")
         plt.title("UPCOMING WOODIE PIVOT POINT, RESISTANCES AND SUPPORTS OF "+stock)
         plt.show()
-
 
 
 #intraday change percent alert analysis 
