@@ -12,11 +12,10 @@ finnhub_client = finnhub.Client(api_key="cdn6fb2ad3ibs2gsvl4gcdn6fb2ad3ibs2gsvl5
 # stock symbols with name
 csv_file = pd.read_excel('stock_list.xlsx')
 df_list = pd.DataFrame(csv_file)
-# print(df_list.head(25)[df_list.columns[0:2]])
 print(csv_file)
 
 #enter the stock name you want to search
-stock = input("Enter the Stock symbol : ")
+stock = input("Enter the Stock symbol(any US listed stock) :")
 
 
 choice1 = input("What you want to analyze : \n1. Daily pivot point.\n2. Intraday candle closing percent analysis. : ")
@@ -29,9 +28,8 @@ if(choice1 == '1'):
     df = pd.DataFrame(basic)
     df.rename(columns = {'c':'closing', 'h':'High', 'l':'low'}, inplace = True)
     pd.set_option('display.max_rows', None)
-    # df[['closing', 'High', 'low']]
 
-    choice = (input("What you want to calculate : \n 1. Standard Pivot point.\n2.   Woodie Pivot point.\n(select 1/2) :"))
+    choice = (input("What you want to calculate : \n 1. Standard Pivot point.\n 2.   Woodie Pivot point.\n(select 1/2) :"))
 
     if(choice == '1'):
         # pivot point
@@ -52,6 +50,7 @@ if(choice1 == '1'):
         print(df[['closing', 'High', 'low', 'Pivot point','Resistance 1', 'Resistance 2',   'Resistance 3',
                   'Support 1', 'Support 2','Support 3']])
 
+        # standard pivot point representation
         plt.plot(df.index, df['Pivot point'],"-b", label = 'Pivot point') 
         plt.legend(loc="upper left")
         current_date = str(datetime.fromtimestamp(timestamp))
@@ -60,20 +59,20 @@ if(choice1 == '1'):
         plt.ylabel("Price in USD")
 
         plt.title("For upcoming trading day Pivot Point = "+str("%.2f" % df['Pivot point'].iloc[-1])+" USD")
-
         plt.show()
 
-        plt.plot(df.index, df['closing'],"black",label = 'Closing, prev. closing = '+str(df['closing'].iloc[-1])[0:5]+" USD")
+        # closing, high, low representation
         plt.plot(df.index, df['High'],"g", label='High, prev. High = '+str(df['High'].iloc[-1])[0:5]+" USD")
+        plt.plot(df.index, df['closing'],"black",label = 'Closing, prev. closing = '+str(df['closing'].iloc[-1])[0:5]+" USD")
         plt.plot(df.index, df['low'],"r",label = 'low, prev. low = '+str(df['low'].iloc[-1])[0:5]+" USD")
         plt.xlabel("From "+str(last_date[0:10])+" TO "+str(current_date[0:10])+ "---->")
         plt.ylabel("Price in USD")
         plt.legend(loc="upper right")
-
+        plt.title("HIGH-CLOSING-LOW of "+stock)
         plt.show()
 
 
-
+        # Horizontal line representation of pivot point, resistances and supports
         plt.axhline(y=df['Pivot point'].iloc[-1], color='black', linestyle='-',label = "PP = "+str(df['Pivot point'].iloc[-1])[0:5]+" USD")
         plt.axhline(y=df['Resistance 1'].iloc[-1], color='g', linestyle='--',label = "1st Resistance = "+str(df['Resistance 1'].iloc[-1])[0:5]+" USD")
         plt.axhline(y=df['Resistance 2'].iloc[-1], color='g', linestyle='--')
@@ -105,6 +104,7 @@ if(choice1 == '1'):
         print(df[['closing', 'High', 'low', 'Woodie PP','WR1', 'WR2','WR3',
                   'WS1', 'WS2','WS3']])
 
+        # Woodie pivot point representation
         plt.plot(df.index, df['Woodie PP'],"-b", label = 'Woodie PIVOT POINT') 
         plt.legend(loc="upper right")
         current_date = str(datetime.fromtimestamp(timestamp))
@@ -116,17 +116,18 @@ if(choice1 == '1'):
 
         plt.show()
 
-        plt.plot(df.index, df['closing'],"black",label = 'Closing, prev. closing = '+str(df['closing'].iloc[-1])[0:5]+" USD")
+        # closing, high, low representation
         plt.plot(df.index, df['High'],"g", label='High, prev. High = '+str(df['High'].iloc[-1])[0:5]+" USD")
+        plt.plot(df.index, df['closing'],"black",label = 'Closing, prev. closing = '+str(df['closing'].iloc[-1])[0:5]+" USD")
         plt.plot(df.index, df['low'],"r",label = 'low, prev. low = '+str(df['low'].iloc[-1])[0:5]+" USD")
         plt.xlabel("From "+str(last_date[0:10])+" TO "+str(current_date[0:10])+ "---->")
         plt.ylabel("Price in USD")
         plt.legend(loc="upper right")
-
+        plt.title("HIGH-CLOSING-LOW of "+stock)
         plt.show()
 
 
-
+        # Horizontal line representation of woodie pivot point, resistances and supports
         plt.axhline(y=df['Woodie PP'].iloc[-1], color='black', linestyle='-',label = "WOODIE PP = "+str(df['Woodie PP'].iloc[-1])[0:5]+" USD")
         plt.axhline(y=df['WR1'].iloc[-1], color='g', linestyle='--',label = "Woodie R1 = "+str(df['WR1'].iloc[-1])[0:5]+" USD")
         plt.axhline(y=df['WR2'].iloc[-1], color='g', linestyle='--')
@@ -142,12 +143,11 @@ if(choice1 == '1'):
 
 #intraday change percent alert analysis 
 else:
-    api_key = 'RNZPXZ6Q9FEFMEHM'
+    api_key = 'RH9D2WASV014F4HB'
 
     ts = TimeSeries(key=api_key, output_format='pandas')
-    # stock = input("Enter the symbol of the stock : ")
 
-    phone = input("Enter the phone number in the form +91xxxxxxxxxx : ")
+    phone = input("Enter the phone number in the form +91xxxxxxxxxx So we can alert you whenever the changing percent crosses the decided limits: ")
     data, meta_data = ts.get_intraday(symbol=stock, interval = '1min', outputsize =     'full')
     df_test = pd.DataFrame(data)
     df = df_test.head(390)
