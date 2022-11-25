@@ -32,5 +32,5 @@ refering the above site, we created a local excel sheet which we later converted
 https://github.com/pratham180702/python_live_Stock_analysis/blob/main/stock_list.xlsx
 
 ## contributed by 
-PRATHAM KAKKAD
+PRATHAM KAKKAD,
 JAYDEEP SHARMA
