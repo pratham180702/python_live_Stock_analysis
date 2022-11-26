@@ -28,3 +28,8 @@ Time: 2:10
 Phone Number: +917433055288
 Message: AAPL Alert: last minute closing of your stock has crossed your stop loss closing limit by the change percent of : -0.0004711%
 --------------------
+Date: 26/11/2022
+Time: 10:47
+Phone Number: +919429283446
+Message: MSFT Alert: last minute closing of your stock has crossed your stop loss closing limit by the change percent of : 0.00399205%
+--------------------
